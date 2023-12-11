@@ -1,0 +1,22 @@
+{
+  "name": "com.dns.core-mechanics",
+  "version": "1.0.0",
+  "displayName": "DNSCoreMechanics",
+  "description": "A package to with core funcionalities to use in unity game projects 2D.",
+  "unity": "2022.3",
+  "unityRelease": "14f1",
+  "documentationUrl": "https://example.com/",
+  "changelogUrl": "https://example.com/changelog.html",
+  "licensesUrl": "https://example.com/licensing.html",
+  "dependencies": {},
+  "keywords": [
+    "Core",
+    "Mechanics",
+    "DNS"
+  ],
+  "author": {
+    "name": "DNS games",
+    "email": "dns_gamesBR@example.com",
+    "url": "https://www.dnsgamesbr.com"
+  }
+}
