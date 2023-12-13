@@ -29,6 +29,7 @@ namespace DNSCoreMechanics.Behaviors.Entities
         /// <param name="jumpPower">Add force to entity jump.</param>
         protected void initializeEntityBehaviorRequiredConfigs(float movementSpeed, float jumpPower )
         {
+            //TODO não pode utilizar o new, dever ser adicionado no componente
             weaponBehavior = new WeaponBehavior2D();
             this.movementSpeed = movementSpeed;
             this.jumpPower = jumpPower;
