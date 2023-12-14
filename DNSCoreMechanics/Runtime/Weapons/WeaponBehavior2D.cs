@@ -8,6 +8,15 @@ namespace DNSCoreMechanics.Weapons
     public class WeaponBehavior2D:MonoBehaviour
     {
         protected bool canShoot = true;
+        Vector3 mousePos;
+        Camera cam;
+        Rigidbody2D rb;
+        public float force;
+
+        protected void initializeRequiredWeaponBehaviorConfigs()
+        {
+            cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        }
 
         //Make object follow the mouse pointer direction
         public void WeaponAim(Camera cam, GameObject weapon_gameObject)
@@ -53,6 +62,11 @@ namespace DNSCoreMechanics.Weapons
 
             bullet.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(2, 0), ForceMode2D.Impulse);
             Destroy(bullet, timeToDestroyBullet);
+        }
+
+        protected void OnAim()
+        {
+            
         }
     }
 }
