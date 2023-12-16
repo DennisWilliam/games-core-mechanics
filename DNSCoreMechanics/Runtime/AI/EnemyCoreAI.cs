@@ -26,13 +26,15 @@ public class EnemyCoreAI : EntityAI
         //this.bulletParent = GameObject.FindWithTag(bulletParentTagName);
 
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        if (entityScriptObject.sprite != null)
+        if (entityScriptObject != null)
         {
-            spriteRenderer.sprite = entityScriptObject.sprite;
+            if (entityScriptObject && entityScriptObject.sprite != null)
+            {
+                spriteRenderer.sprite = entityScriptObject.sprite;
+            }
+            health = entityScriptObject.healthMax;
+            height = Random.Range(entityScriptObject.height - 0.5f, entityScriptObject.height + 0.5f);
         }
-
-        health = entityScriptObject.healthMax;
-        height = Random.Range(entityScriptObject.height - 0.5f, entityScriptObject.height + 0.5f);
         //distancePlayer = 10;
     }
 

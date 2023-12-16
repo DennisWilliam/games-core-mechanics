@@ -9,7 +9,7 @@ namespace DNSCoreMechanics.Behaviors.Entities
     {
         [Header("Moving Settings")]
         [SerializeField] protected bool isAIControl;
-        public float movementSpeed;
+        [SerializeField] public float movementSpeed;
         public float jumpPower;
         [SerializeField] protected Rigidbody2D rigidbody;
 

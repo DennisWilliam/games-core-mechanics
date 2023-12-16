@@ -7,15 +7,47 @@ namespace DNSCoreMechanics.Weapons
 
     public class WeaponBehavior2D:MonoBehaviour
     {
-        protected bool canShoot = true;
+        [Header("Shooting RigidBody Settings")]
+        protected bool canShoot;
         Vector3 mousePos;
         Camera cam;
         Rigidbody2D rb;
         public float force;
 
+        [Header("Shooting Settings")]
+        [SerializeField] GameObject bullet;
+        public Transform bulletTransform;
+        public delegate void OnMouseClickDelegate();
+        public OnMouseClickDelegate m_methodToCall;
+        [SerializeField] float timer;
+        [SerializeField] float timeBetweenFiring;
+
+        [Header("AI Settings")]
+        [SerializeField] bool isAI;
+        GameObject player;
+
         protected void initializeRequiredWeaponBehaviorConfigs()
         {
+            player = GameObject.FindGameObjectWithTag("Player");
             cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+            canShoot = true;
+        }
+
+        private void Start()
+        {
+            initializeRequiredWeaponBehaviorConfigs();
+        }
+
+        private void Update()
+        {
+            if (!isAI)
+            {
+                OnShoot();
+            }
+            else
+            {
+                OnAIShoot();
+            }
         }
 
         //Make object follow the mouse pointer direction
@@ -64,10 +96,68 @@ namespace DNSCoreMechanics.Weapons
             Destroy(bullet, timeToDestroyBullet);
         }
 
-        protected void OnAim()
+        protected void OnShoot()
+        {
+            mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 rotation = mousePos - transform.position;
+            float rotationZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+
+            transform.rotation = Quaternion.Euler(0, 0, rotationZ);
+
+            m_methodToCall = ExecuteMouseClickAction;
+            DetectMouseClick(m_methodToCall);
+        }
+
+        protected void OnAIShoot()
+        {
+            Vector3 rotation = player.transform.position - transform.position;
+            float rotationZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+
+            transform.rotation = Quaternion.Euler(0, 0, rotationZ);
+
+            m_methodToCall = ExecuteMouseClickAction;
+            DetectMouseClick(m_methodToCall);
+        }
+
+        public void DetectMouseClick(OnMouseClickDelegate methodToCall)
         {
             
+            if (!canShoot)
+            {
+                timer += Time.deltaTime;
+                if (timer > timeBetweenFiring)
+                {
+                    canShoot = true;
+                    timer = 0;
+                }
+            }
+           
+            Debug.Log(canShoot+" + "+!isAI);
+            if (Input.GetMouseButton(0) && canShoot && !isAI)
+            {
+                canShoot = false;
+                methodToCall();
+            }else if(canShoot && isAI)
+            {
+                
+                canShoot = false;
+                methodToCall();
+            }
+        }
+
+        private void ExecuteMouseClickAction()
+        {
+            GameObject bulletInstance;
+            bulletInstance = Instantiate(
+                    bullet,
+                    bulletTransform.position,
+                    Quaternion.identity
+                    );
+            //Instantiate(bullet, bulletTransform.position, Quaternion.identity);
+            Destroy(bulletInstance, 5);
         }
     }
+
+
 }
 
