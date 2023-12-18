@@ -2,6 +2,8 @@ using System.Collections;
 using UnityEngine;
 using DNSCoreMechanics.Weapons;
 using DNSCoreMechanics.Intefaces;
+using DNSCoreMechanics.Utils;
+using UnityEngine.EventSystems;
 
 
 namespace DNSCoreMechanics.Behaviors.Entities
@@ -19,7 +21,6 @@ namespace DNSCoreMechanics.Behaviors.Entities
         [SerializeField] public float movementSpeed;
         [SerializeField] public Rigidbody2D rb; //REPETITION
         [SerializeField] public GameObject lookAtDirection;
-        public Transform entityTransform;
 
         [Header("Dash Settings")]
         [SerializeField] public float dashSpeed = 10f; //REPETITION
@@ -31,9 +32,17 @@ namespace DNSCoreMechanics.Behaviors.Entities
         [Header("Animation Settings 2D")]
         [SerializeField] protected Animator anim;
 
-        public void Dash(bool isDashing, bool canDash)
+        public void Dash(bool isDashing, bool canDash, Rigidbody2D rb, float dashSpeed, float dashDuration, int dashCooldown)
         {
-            EBInstance.Dash( isDashing, canDash);
+            Vector2 moveDirection = BehaviorsUtils.getNormalizedMoveDirection();
+            Vector2 mousePosition = BehaviorsUtils.getCameraMousePosition();
+
+            if (Input.GetKeyDown(KeyCode.Space) && canDash)
+            {
+                Debug.Log("dash");
+                StartCoroutine(BehaviorsUtils.doDash(canDash, isDashing, rb, moveDirection.x, moveDirection.y, dashSpeed, dashDuration, dashCooldown));
+            }
+            //EBInstance.Dash( isDashing, canDash,rb, dashSpeed, dashDuration, dashCooldown);
         }
 
         public void hasCollision()

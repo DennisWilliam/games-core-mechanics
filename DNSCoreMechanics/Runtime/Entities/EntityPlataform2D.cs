@@ -36,7 +36,7 @@ public class EntityPlataform2D : MonoBehaviour, IEntityBehavior
         canDash = true;
     }
 
-    public void Dash()
+    public void Dash(bool isDashing, bool canDash, Rigidbody2D rb, float dashSpeed, float dashDuration, int dashCooldown)
     {
         if (isDashing)
         {
@@ -65,7 +65,7 @@ public class EntityPlataform2D : MonoBehaviour, IEntityBehavior
         throw new System.NotImplementedException();
     }
 
-    public void Move(Transform entityTransform)
+    public void Move(Transform entityTransform, Animator anim, float movementSpeed, GameObject lookAtDirection)
     {
         float horizontal = Input.GetAxisRaw("Horizontal") * movementSpeed;
         rb.velocity = new Vector2(horizontal, rb.velocity.y);

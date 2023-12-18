@@ -9,7 +9,7 @@ namespace DNSCoreMechanics.TopDown2D.Entities
 
 }
 
-public class EntityTopDown2D : IEntityBehavior
+public class EntityTopDown2D: IEntityBehavior
 {
    // [Header("Moving Settings TopDown 2D")]
    // [SerializeField] public float movementSpeed;
@@ -31,7 +31,7 @@ public class EntityTopDown2D : IEntityBehavior
 
 
     //REPETITION
-    public void Dash(bool isDashing, bool canDash)
+    public void Dash(bool isDashing, bool canDash, Rigidbody2D rb, float dashSpeed, float dashDuration, int dashCooldown)
     {
         if (isDashing)
         {
@@ -41,7 +41,7 @@ public class EntityTopDown2D : IEntityBehavior
         Vector2 mousePosition = BehaviorsUtils.getCameraMousePosition();
         if (Input.GetKeyDown(KeyCode.Space) && canDash)
         {
-          //  StartCoroutine(BehaviorsUtils.doDash(canDash, isDashing, rb, moveDirection.x, moveDirection.y, dashSpeed, dashDuration, dashCooldown));
+            //StartCoroutine(BehaviorsUtils.doDash(canDash, isDashing, rb, moveDirection.x, moveDirection.y, dashSpeed, dashDuration, dashCooldown));
         }
     }
 
@@ -68,7 +68,6 @@ public class EntityTopDown2D : IEntityBehavior
 
     public void Move(Transform entityTransform, Animator anim, float movementSpeed, GameObject lookAtDirection)
     {
-        //Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         Vector3 movement = BehaviorsUtils.getNormalizedMoveDirection();
         Debug.Log(movement);
         if (anim != null)
@@ -80,8 +79,6 @@ public class EntityTopDown2D : IEntityBehavior
 
         Debug.Log(lookAtDirection);
 
-        //this.transform.position = this.transform.position + movement * movementSpeed * Time.deltaTime;
-        //Debug.Log(transform);
         entityTransform.position = entityTransform.position + movement * movementSpeed * Time.deltaTime;
         lookAtDirection.transform.rotation = BehaviorsUtils.RotateAtFront(movement.x, movement.y);
     }

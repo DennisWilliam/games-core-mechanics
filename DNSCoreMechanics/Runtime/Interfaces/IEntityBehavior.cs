@@ -11,7 +11,7 @@ namespace DNSCoreMechanics.Intefaces
         void Jump();
         void Shoot();
         void MeleeAtack();
-        void Dash(bool isDashing, bool canDash);
+        void Dash(bool isDashing, bool canDash, Rigidbody2D rb, float dashSpeed, float dashDuration, int dashCooldown);
         void Respawn();
         void hasCollision();
     }
