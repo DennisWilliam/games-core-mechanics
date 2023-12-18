@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DNSCoreMechanics.ScriptObjects;
-using DNSCoreMechanics.AI;
+//using DNSCoreMechanics.AI;
 
 namespace DNSCoreMechanics.ManagersCore
 {
 
-    public class SpawnManager<T> : MonoBehaviour where T : EntityAI
+    //public class SpawnManager<T> : MonoBehaviour where T : EntityAI
+    public class SpawnManager<T> : MonoBehaviour
     {
         //public static SpawnManager<T> Instance { get; private set; }
 
@@ -53,7 +54,7 @@ namespace DNSCoreMechanics.ManagersCore
                 int entityIndex = Random.Range(0, entities.Length);
                 GameObject entity = Instantiate(entity_prefab, spwanPos, new Quaternion(), parentContainer.transform);
                 T entity_script = entity.GetComponent<T>();
-                entity_script.entityScriptObject = entities[entityIndex];
+               // entity_script.entityScriptObject = entities[entityIndex];
             }
         }
 

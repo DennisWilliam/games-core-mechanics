@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DNSCoreMechanics.AI;
+//using DNSCoreMechanics.AI;
 
 namespace DNSCoreMechanics.ManagersCore
 {
@@ -45,8 +45,8 @@ namespace DNSCoreMechanics.ManagersCore
                     Random.Range(-10, 10),
                     Random.Range(6, 8)
                     );
-                    SpawnManager<EnemyCoreAI> a = spawnMangers[i].GetComponent<SpawnManager<EnemyCoreAI>>();
-                    a.NextWave(2, spwanPos);
+                   // SpawnManager<EnemyCoreAI> a = spawnMangers[i].GetComponent<SpawnManager<EnemyCoreAI>>();
+                   // a.NextWave(2, spwanPos);
                 }
                
             }

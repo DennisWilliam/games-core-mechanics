@@ -132,7 +132,7 @@ namespace DNSCoreMechanics.Weapons
                 }
             }
            
-            Debug.Log(canShoot+" + "+!isAI);
+            //Debug.Log(canShoot+" + "+!isAI);
             if (Input.GetMouseButton(0) && canShoot && !isAI)
             {
                 canShoot = false;
