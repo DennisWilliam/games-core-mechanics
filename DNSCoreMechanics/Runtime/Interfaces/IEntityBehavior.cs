@@ -6,7 +6,7 @@ namespace DNSCoreMechanics.Intefaces
 {
     public interface IEntityBehavior
     {
-        void InitializeEntityBehaviorRequiredConfigs(float movementSpeed, float jumpPower);
+        //void InitializeEntityBehaviorRequiredConfigs(float movementSpeed, float jumpPower);
         void Move(Transform entityTransform, Animator anim, float movementSpeed, GameObject lookAtDirection);
         void Jump();
         void Shoot();

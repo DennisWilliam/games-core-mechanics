@@ -153,6 +153,8 @@ namespace DNSCoreMechanics.Weapons
                     bulletTransform.position,
                     Quaternion.identity
                     );
+
+            
             //Instantiate(bullet, bulletTransform.position, Quaternion.identity);
             Destroy(bulletInstance, 5);
         }

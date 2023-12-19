@@ -52,7 +52,7 @@ namespace DNSCoreMechanics.Behaviors.Entities
 
         public void InitializeEntityBehaviorRequiredConfigs(float movementSpeed, float jumpPower)
         {
-            EBInstance.InitializeEntityBehaviorRequiredConfigs(movementSpeed, jumpPower);
+            
         }
 
         public void Jump()

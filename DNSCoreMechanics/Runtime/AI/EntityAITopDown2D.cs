@@ -42,7 +42,7 @@ public class EntityAITopDown2D : EntityBehavior2D<EntityTopDown2D>, IEntityAI
 
         if (distanceToChase < distanceBetween)
         {
-           // transform.position = Vector2.MoveTowards(this.transform.position, target.transform.position, EBInstance.movementSpeed * Time.deltaTime);
+           transform.position = Vector2.MoveTowards(this.transform.position, target.transform.position, movementSpeed * Time.deltaTime);
             transform.rotation = Quaternion.Euler(Vector3.forward * angle);
         }
     }
